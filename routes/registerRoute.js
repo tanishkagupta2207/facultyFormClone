@@ -1,8 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const { registerUser } = require('../controllers/register');
 
-// Register endpoint
-router.post('/', registerUser);
+import { Router } from "express";
+import { registerUser } from '../controllers/register.js';
 
-module.exports = router;
+const registerRoute = Router();
+
+registerRoute.post('/', registerUser);
+
+export default registerRoute;
