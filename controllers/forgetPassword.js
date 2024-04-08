@@ -1,7 +1,7 @@
 import User from '../models/user.js';
 import nodemailer from 'nodemailer';
 
-const resetPassword = async (req, res) => {
+const forgetPassword = async (req, res) => {
     const {emailId} = req.body;
     try {
         if(!emailId){
@@ -38,4 +38,4 @@ const resetPassword = async (req, res) => {
     }
 };
 
-export { resetPassword};
+export { forgetPassword};
