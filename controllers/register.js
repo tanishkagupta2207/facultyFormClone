@@ -1,15 +1,24 @@
 import User from '../models/user.js';
 import nodemailer from 'nodemailer';
+import validator from 'validator';
 
 const registerUser = async (req, res) => {
-    const { userName, emailId, password } = req.body;
+    const { firstName, lastName, emailId, category, password } = req.body;
     try {
-        const existingUser = await User.findOne({ emailId });
-        if (existingUser) {
-            return res.status(400).json({ message: 'Email already exists' });
+        if(!firstName || !lastName || !emailId || !category || !password){
+            return res.status(400).json({ message: 'Enter all the details!' });
         }
 
-        const newUser = new User({ userName, emailId, password, status:'pending'});
+        if (!validator.isEmail(emailId)) {
+            res.status(400).json({ error: 'Enter valid email address.' });
+        }
+
+        const existingUser = await User.findOne({ emailId });
+        if (existingUser) {
+            return res.status(400).json({ message: 'User already exists with this emailId' });
+        }
+        
+        const newUser = new User({ firstName, lastName, emailId, password, category, status:'pending'});
 
         await newUser.save();
 
