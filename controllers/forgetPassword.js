@@ -22,7 +22,7 @@ const forgetPassword = async (req, res) => {
             from: 'cloneform294@gmail.com',
             to: emailId,
             subject: 'Password Reset',
-            text: `Please activate your account by clicking on the following link: http://localhost:3000/resetPassword/${existingUser._id}`
+            text: `Please reset the password by clicking on the following link: http://localhost:3000/resetPassword/${existingUser._id}`
         };
 
         await transporter.sendMail(mailOptions);
