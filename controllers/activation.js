@@ -1,10 +1,12 @@
 import User from '../models/user.js';
+import { ObjectId } from 'mongodb'; 
 
 const activationUser = async (req, res) => {
-    const id = req.params.userId;
-    console.log(id);
+    const userId = req.params.userId;
+    const id = new ObjectId(userId); 
     try {
         const existingUser = await User.findById(id);
+        console.log()
         if (existingUser) {
             existingUser.status = 'activated';
             await existingUser.save();

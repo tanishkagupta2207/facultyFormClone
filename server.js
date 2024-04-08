@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import registerRoute from './routes/registerRoute.js';
 import loginRoute from './routes/loginRoute.js';
+import activateRoute from './routes/activation.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,6 +20,7 @@ app.use(
 // Register routes
 app.use('/api/register', registerRoute);
 app.use('/api/login', loginRoute);
+app.use('/api/activate', activateRoute);
 
 // Connect to MongoDB and start the server
 mongoose.connect(MONGODB_URI, { dbName: "facultyForm" })

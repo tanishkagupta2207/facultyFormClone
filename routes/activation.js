@@ -1,9 +1,9 @@
 
 import { Router } from "express";
-import { activate } from '../controllers/activation.js';
+import { activationUser } from '../controllers/activation.js';
 
 const activateRoute = Router();
 
-activateRoute.get('/', activate);
+activateRoute.get('/:userId', activationUser);
 
 export default activateRoute;
