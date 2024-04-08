@@ -1,10 +1,8 @@
-import express from 'express';
-const router = express.Router();
+import { Router } from "express";
+import {loginUser} from '../controllers/login.js'
 
-// Register endpoint handler
-router.post('/', (req, res) => {
-    // Handle registration logic
-    res.send('login route works!');
-});
+const loginRoute = Router();
 
-export default router; // Exporting the router as the default export
+loginRoute.post('/', loginUser);
+
+export default loginRoute;
