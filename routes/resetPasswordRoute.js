@@ -3,6 +3,6 @@ import {resetPassword} from '../controllers/resetPassword.js'
 
 const resetPasswordRoute = Router();
 
-resetPasswordRoute.post('/', resetPassword);
+resetPasswordRoute.post('/:userId', resetPassword);
 
 export default resetPasswordRoute;
