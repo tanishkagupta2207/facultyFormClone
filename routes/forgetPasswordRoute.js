@@ -1,8 +1,8 @@
 import { Router } from "express";
 import {forgetPassword} from '../controllers/forgetPassword.js'
 
-const resetPasswordRoute = Router();
+const forgetPasswordRoute = Router();
 
-resetPasswordRoute.post('/', forgetPassword);
+forgetPasswordRoute.post('/', forgetPassword);
 
 export default forgetPasswordRoute;
