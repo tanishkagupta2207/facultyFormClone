@@ -9,6 +9,14 @@ const form1Schema = new Schema({
     emailId: {
         type: String
     },
+    userfirstName: {
+        type: String,
+        required: true
+    },
+    userlastName: {
+        type: String,
+        required: true
+    },
     applicationNumber: {
         type: Number,
         required: true,
