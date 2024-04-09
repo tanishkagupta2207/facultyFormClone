@@ -17,6 +17,11 @@ const form1Schema = new Schema({
         type: String,
         required: true
     },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    },
     applicationNumber: {
         type: Number,
         required: true,

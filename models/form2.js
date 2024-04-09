@@ -11,22 +11,27 @@ const form2Schema = new Schema({
         type: String, 
         required: true 
     },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    },
     universityA: { 
         type: String 
     },
-    departmentA: { 
+    department: { 
         type: String
     },
-    nameOfPhDSupervisorA: { 
+    nameOfPhDSupervisor: { 
         type: String
     },
     yearOfJoiningA: { 
         type: String
     },
-    dateOfSuccessfulThesisDefenceA: { 
+    dateOfSuccessfulThesisDefence: { 
         type: Date
     },
-    dateOfAwardA: { 
+    dateOfAward: { 
         type: Date,  
     },
     titleOfPhDThesisA: {
@@ -80,10 +85,10 @@ const form2Schema = new Schema({
     divisionC: {
         type: String,
     },
-    school12D: {
+    school12: {
         type: String,
     },
-    school10D: {
+    school10: {
         type: String,
     },
     yearOfPassing12D: {
@@ -127,7 +132,7 @@ const form2Schema = new Schema({
     },
     divisionE: {
         type: Array,
-    },
+    }
 });
 
 const form2 = mongoose.model('form2', form2Schema);
