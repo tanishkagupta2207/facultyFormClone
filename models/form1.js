@@ -2,35 +2,107 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
-    firstName: { 
-        type: String, 
-        required: true 
-    },
-    lastName: { 
-        type: String, 
-        required: true 
-    },
-    emailId: { 
-        type: String, 
-        required: true, 
-        unique: true 
-    },
-    password: { 
-        type: String, 
-        required: true 
-    },
+const form1Schema = new Schema({
     category: {
-        type: String,
-        required: true
+        type: String
     },
-    status: {
-        type: String,
+    emailId: {
+        type: String
+    },
+    applicationNumber: {
+        type: Number,
         required: true,
-        enum: ['activated', 'pending']
+        unique: true
+    },
+    advertisementNumber: {
+        type: String
+    },
+    date: {
+        type: date
+    },
+    postApplied: {
+        type: String
+    },
+    department: {
+        type: String
+    },
+    firstName: {
+        type: String
+    },
+    middleName: {
+        type: String
+    },
+    lastName: {
+        type: String
+    },
+    nationality: {
+        type: String
+    },
+    dateOfBirth: {
+        type: date
+    },
+    gender: {
+        type: String
+    },
+    maritalStatus: {
+        type: String
+    },
+    idProofname: {
+        type: String
+    },
+    idProofImage: {
+        type: Buffer
+    },
+    fatherName: {
+        type: String
+    },
+    personalPhoto: {
+        type: Buffer
+    },
+    correspondenceStreet: {
+        type: String
+    },
+    correspondenceCity: {
+        type: String
+    },
+    correspondenceState: {
+        type: String
+    },
+    correspondenceCountry: {
+        type: String
+    },
+    correspondencePin: {
+        type: String
+    },
+    permanentStreet: {
+        type: String
+    },
+    permanentCity: {
+        type: String
+    },
+    permanentState: {
+        type: String
+    },
+    permanentCountry: {
+        type: String
+    },
+    permanentPin: {
+        type: String
+    },
+    mobile: {
+        type: Number
+    },
+    alternateMobile: {
+        type: Number
+    },
+    alternateEmailId: {
+        type: String
+    },
+    landlineNumber: {
+        type: Number
     }
 });
 
-const user = mongoose.model('user', userSchema);
+const form1 = mongoose.model('form1', form1Schema);
 
-export default user;
+export default form1;

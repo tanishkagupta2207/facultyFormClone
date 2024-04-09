@@ -23,8 +23,10 @@ app.use(
 app.use('/api/register', registerRoute);
 app.use('/api/login', loginRoute);
 app.use('/api/activate', activateRoute);
-app.use('/api/forgetPassword', forgetPasswordRoute)
-app.use('/api/resetPassword', resetPasswordRoute)
+app.use('/api/forgetPassword', forgetPasswordRoute);
+app.use('/api/resetPassword', resetPasswordRoute);
+
+
 // Connect to MongoDB and start the server
 mongoose.connect(MONGODB_URI, { dbName: "facultyForm" })
     .then(() => {
