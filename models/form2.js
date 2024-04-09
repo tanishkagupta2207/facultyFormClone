@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const details = new Schema({
+const form2Schema = new Schema({
     firstName: { 
         type: String, 
         required: true 
@@ -130,6 +130,6 @@ const details = new Schema({
     },
 });
 
-const form2 = mongoose.model('form2', details);
+const form2 = mongoose.model('form2', form2Schema);
 
 export default form2;
