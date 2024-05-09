@@ -1,5 +1,6 @@
 import User from '../models/user.js';
 import { ObjectId } from 'mongodb'; 
+import form1 from '../models/form1.js';
 
 const activationUser = async (req, res) => {
     const userId = req.params.userId;
@@ -10,6 +11,10 @@ const activationUser = async (req, res) => {
         if (existingUser) {
             existingUser.status = 'activated';
             await existingUser.save();
+            
+            const newUser = new form1({ userId: userId,category: existingUser.category, lastName: existingUser.lastName, firstName: existingUser.firstName, emailId: existingUser.emailId});
+            await newUser.save();
+            
             return res.json({ message: 'Account Activated' });
         } else {
             return res.json({ message: 'Invalid link' });
