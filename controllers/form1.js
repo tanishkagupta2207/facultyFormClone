@@ -1,22 +1,20 @@
 import form1 from '../models/form1.js';
+import user from '../models/user.js';
 import { ObjectId } from 'mongodb';
 
 export const fetchForm1 = async (req, res) => {
     const userId = req.params.userId;
     const id = new ObjectId(userId); 
+    
     try {
         const existingUser = await form1.findById(id);
         if (existingUser) {
-            return res.status(200).json({
-                status: 200,
-                advNum: existingUser.advertisementNumber,
+            const data1 = {advNum: existingUser.advertisementNumber,
                 doa: existingUser.date,
                 refNum: existingUser.applicationNumber,
                 post: existingUser.postApplied,
                 dept: existingUser.department,
-                fname: existingUser.firstName,
                 mname: existingUser.middleName,
-                lname: existingUser.lastName,
                 nationality: existingUser.nationality,
                 dob: existingUser.dateOfBirth,
                 age: existingUser.age,
@@ -41,9 +39,59 @@ export const fetchForm1 = async (req, res) => {
                 email: existingUser.emailId,
                 mobile2: existingUser.alternateMobile,
                 email2: existingUser.alternateEmailId,
-                landline: existingUser.landlineNumber
+                landline: existingUser.landlineNumber};
+            return res.status(200).json({
+                status: 200,
+                data1,
+                data2 : existingUser.firstName,
+                data3 : existingUser.lastName,
             });
-        } else {
+        }
+        else if(await user.findById(id)){
+            const loginUser = await user.findById(id);
+            const newUser = new form1({
+                category: null,
+                emailId: null,
+                userfirstName: loginUser.firstName,
+                userlastName: loginUser.lastName,
+                userId: loginUser._id,
+                applicationNumber: null,
+                advertisementNumber: null,
+                date: null,
+                postApplied: null,
+                department: null,
+                firstName: null,
+                middleName: null,
+                lastName: null,
+                nationality: null,
+                dateOfBirth: null,
+                age: null,
+                ageDays: null,
+                gender: null,
+                maritalStatus: null,
+                idProofname: null,
+                idProofImage: null,
+                fatherName: null,
+                personalPhoto: null,
+                correspondenceStreet: null,
+                correspondenceCity: null,
+                correspondenceState: null,
+                correspondenceCountry: null,
+                correspondencePin: null,
+                permanentStreet: null,
+                permanentCity: null,
+                permanentState: null,
+                permanentCountry: null,
+                permanentPin: null,
+                mobile: null,
+                alternateMobile: null,
+                alternateEmailId: null,
+                landlineNumber: null
+            });
+
+        await newUser.save();
+        } 
+        else {
             return res.json({ message: 'Invalid User' });
         }
 
@@ -58,15 +106,13 @@ export const updateForm1 = async (req, res) => {
     try {
         const existingUser = await form1.findById(id);
         if (existingUser) {
-            const { advNum,doa,refNum, post, dept, fname, mname, lname, nationality, dob, age, ageDays, gender, mstatus, cast, disabilityType, idProof, fatherName, cadd, cadd1, cadd2, cadd3, cadd4, padd, padd1, padd2, padd3, padd4, mobile, email, mobile2, email2, landline } = req.body;
+            const { advNum,doa,refNum, post, dept, mname, nationality, dob, age, ageDays, gender, mstatus, cast, disabilityType, idProof, fatherName, cadd, cadd1, cadd2, cadd3, cadd4, padd, padd1, padd2, padd3, padd4, mobile, email, mobile2, email2, landline } = req.body;
                 existingUser.advertisementNumber = advNum;
                 existingUser.date = doa ;
                 existingUser.applicationNumber = refNum;
                 existingUser.postApplied = post;
                 existingUser.department = dept;
-                existingUser.firstName = fname;
                 existingUser.middleName = mname;
-                existingUser.lastName = lname;
                 existingUser.nationality = nationality;
                 existingUser.dateOfBirth = dob;
                 existingUser.age = age;
