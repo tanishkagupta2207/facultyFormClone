@@ -155,9 +155,10 @@ export const updateForm1 = async (req, res) => {
     const userId = req.params.userId;
     const id = new ObjectId(userId); 
     try {
-        const existingUser = await form1.findById(id);
+        const existingUser = await form1.findOne({userId: id});
         if (existingUser) {
             const { advNum,doa,refNum, post, dept, mname, nationality, dob, age, ageDays, gender, mstatus, cast, disabilityType, idProof, fatherName, cadd, cadd1, cadd2, cadd3, cadd4, padd, padd1, padd2, padd3, padd4, mobile, email, mobile2, email2, landline } = req.body;
+                
                 existingUser.advertisementNumber = advNum;
                 existingUser.date = doa ;
                 existingUser.applicationNumber = refNum;
@@ -196,6 +197,7 @@ export const updateForm1 = async (req, res) => {
         }
 
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };

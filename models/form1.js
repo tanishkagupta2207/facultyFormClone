@@ -49,10 +49,10 @@ const form1Schema = new Schema({
         type: String
     },
     age: {
-        type: Number
+        type: String
     },
     ageDays: {
-        type: Number
+        type: String
     },
     gender: {
         type: String
@@ -103,16 +103,16 @@ const form1Schema = new Schema({
         type: String
     },
     mobile: {
-        type: Number
+        type: String
     },
     alternateMobile: {
-        type: Number
+        type: String
     },
     alternateEmailId: {
         type: String
     },
     landlineNumber: {
-        type: Number
+        type: String
     }
 });
 
