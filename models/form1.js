@@ -32,7 +32,7 @@ const form1Schema = new Schema({
         type: String
     },
     date: {
-        type: date
+        type: String
     },
     postApplied: {
         type: String
@@ -53,13 +53,13 @@ const form1Schema = new Schema({
         type: String
     },
     dateOfBirth: {
-        type: date
+        type: String
     },
     age: {
-        type: Int32
+        type: Number
     },
     ageDays: {
-        type: Int32
+        type: Number
     },
     gender: {
         type: String
