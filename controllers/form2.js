@@ -1,13 +1,15 @@
 import form2 from '../models/form2.js';
+import form1 from '../models/form1.js';
 import { ObjectId } from 'mongodb';
 
 export const fetchForm2 = async (req, res) => {
     const userId = req.params.userId;
     const id = new ObjectId(userId); 
     try {
-        const existingUser = await form2.findById(id);
+        const existingUser = await form2.findOne({userId: id});
+        const form1User = await form1.findOne({userId: id});
         if (existingUser) {
-            return res.status(200).json({
+            const data1 = {
                 status: 200,
                 college: existingUser.universityA,
                 stream: existingUser.department,
@@ -16,8 +18,8 @@ export const fetchForm2 = async (req, res) => {
                 dod: existingUser.dateOfSuccessfulThesisDefence,
                 doa: existingUser.dateOfAward,
                 title: existingUser.titleOfPhDThesisA,
-            },
-            {
+            };
+            const data2 = {
                 degree: existingUser.degreeB,
                 college: existingUser.universityB,
                 subjects: existingUser.branchB,
@@ -26,8 +28,8 @@ export const fetchForm2 = async (req, res) => {
                 duration: existingUser.durationB,
                 perce: existingUser.percentageB,
                 rank: existingUser.divisionB,
-            },
-            {
+            };
+            const data3 = {
                 degree: existingUser.degreeC,
                 college: existingUser.universityC,
                 subjects: existingUser.branchC,
@@ -35,21 +37,21 @@ export const fetchForm2 = async (req, res) => {
                 yog: existingUser.yearOfCompletionC,
                 duration: existingUser.durationC,
                 perce: existingUser.percentageC,
-                rank: existingUser.divisionC,
-            },
-            {
-                school: existingUser.school10,
-                passingYear: existingUser.yearOfPassing10D,
-                perce: existingUser.percentage10D,
-                rank: existingUser.division10D
-            },
-            {
-                school: existingUser.school12,
-                passingYear: existingUser.yearOfPassing12D,
-                perce: existingUser.percentage12D,
-                rank: existingUser.division12D
-            },
-            {
+                rank: existingUser.divisionC
+            };
+            const data4 = {
+                    school: existingUser.school10,
+                    passingYear: existingUser.yearOfPassing10D,
+                    perce: existingUser.percentage10D,
+                    rank: existingUser.division10D
+            };
+            const data5 = {
+                    school: existingUser.school12,
+                    passingYear: existingUser.yearOfPassing12D,
+                    perce: existingUser.percentage12D,
+                    rank: existingUser.division12D
+            };
+            const data6 = {
                 degree: existingUser.degreeE,
                 college: existingUser.universityE,
                 subjects: existingUser.branchE,
@@ -57,20 +59,139 @@ export const fetchForm2 = async (req, res) => {
                 yog: existingUser.yearOfCompletionE,
                 duration: existingUser.durationE,
                 perce: existingUser.percentageE,
-                rank: existingUser.divisionE,
-            },
-            {
-                data: existingUser.firstName
-            },
-            {
+                rank: existingUser.divisionE
+            };
+            return res.status(200).json({
+                status : 200,
+                data1,
+                data2,
+                data3,
+                data4,
+                data5,
+                data6,
+                data: existingUser.firstName,
                 data: existingUser.lastName
             }
         );
-        } else {
+        }
+        else if(form1User){
+            const newUser = new form2({
+                firstName: form1User.firstName,
+                lastName: form1User.lastName,
+                userId: form1User.userId,
+                universityA: null,
+                department: null,
+                nameOfPhDSupervisor: null,
+                yearOfJoiningA: null,
+                dateOfSuccessfulThesisDefence: null,
+                dateOfAward: null,
+                titleOfPhDThesisA: null,
+                degreeB: null,
+                universityB: null,
+                branchB: null,
+                yearOfJoiningB: null,
+                yearOfCompletionB: null,
+                durationB: null,
+                percentageB: null,
+                divisionB: null,
+                degreeC: null,
+                universityC: null,
+                branchC: null,
+                yearOfJoiningC: null,
+                yearOfCompletionC: null,
+                durationC: null,
+                percentageC: null,
+                divisionC: null,
+                school12: null,
+                school10: null,
+                yearOfPassing12D: null,
+                yearOfPassing10D: null,
+                percentage12D: null,
+                percentage10D: null,
+                division12D: null,
+                division10D: null,
+                degreeE: [],
+                universityE: [],
+                branchE: [],
+                yearOfJoiningE: [],
+                yearOfCompletionE: [],
+                durationE: [],
+                percentageE: [],
+                divisionE: []
+            });
+            await newUser.save();
+            const existingUser2 = await form2.findOne({userId: id});
+            if (existingUser2) {
+                const data1 = {
+                status: 200,
+                college: existingUser2.universityA,
+                stream: existingUser2.department,
+                supervisor: existingUser2.nameOfPhDSupervisor,
+                yoj: existingUser2.yearOfJoiningA,
+                dod: existingUser2.dateOfSuccessfulThesisDefence,
+                doa: existingUser2.dateOfAward,
+                title: existingUser2.titleOfPhDThesisA,
+            };
+            const data2 = {
+                degree: existingUser2.degreeB,
+                college: existingUser2.universityB,
+                subjects: existingUser2.branchB,
+                yoj: existingUser2.yearOfJoiningB,
+                yog: existingUser2.yearOfCompletionB,
+                duration: existingUser2.durationB,
+                perce: existingUser2.percentageB,
+                rank: existingUser2.divisionB,
+            };
+            const data3 = {
+                degree: existingUser2.degreeC,
+                college: existingUser2.universityC,
+                subjects: existingUser2.branchC,
+                yoj: existingUser2.yearOfJoiningC,
+                yog: existingUser2.yearOfCompletionC,
+                duration: existingUser2.durationC,
+                perce: existingUser2.percentageC,
+                rank: existingUser2.divisionC
+            };
+            const data4 = {
+                    school: existingUser2.school10,
+                    passingYear: existingUser2.yearOfPassing10D,
+                    perce: existingUser2.percentage10D,
+                    rank: existingUser2.division10D
+            };
+            const data5 = {
+                    school: existingUser2.school12,
+                    passingYear: existingUser2.yearOfPassing12D,
+                    perce: existingUser2.percentage12D,
+                    rank: existingUser2.division12D
+            };
+            const data6 = {
+                degree: existingUser2.degreeE,
+                college: existingUser2.universityE,
+                subjects: existingUser2.branchE,
+                yoj: existingUser2.yearOfCompletionE,
+                yog: existingUser2.yearOfCompletionE,
+                duration: existingUser2.durationE,
+                perce: existingUser2.percentageE,
+                rank: existingUser2.divisionE
+            };
+            return res.status(200).json({
+                status : 200,
+                data1,
+                data2,
+                data3,
+                data4,
+                data5,
+                data6,
+                data: existingUser2.firstName,
+                data: existingUser2.lastName
+            });
+        }}
+        
+        else {
             return res.json({ message: 'Invalid User' });
         }
-
-    } catch (error) {
+        }
+        catch (error) {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
