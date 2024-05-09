@@ -25,10 +25,10 @@ const form3Schema = new Schema({
         type: String
     },
     dateOfJoiningA: { 
-        type: Date
+        type: String
     },
     dateOfLeavingA: { 
-        type: Date,  
+        type: String,  
     },
     durationA: {
         type: String,
@@ -50,8 +50,7 @@ const form3Schema = new Schema({
     },
     experience:
     {
-        type: String,
-        enum: ["yes", "no"]
+        type: Array
     },
     positionC: { 
         type: Array
@@ -64,8 +63,7 @@ const form3Schema = new Schema({
     },
     ugPg:
     {
-        type: String,
-        enum: ["UG", "PG"]
+        type: Array,
     },
     noOfStudents: { 
         type: Array,  
