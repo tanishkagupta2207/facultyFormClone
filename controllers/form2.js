@@ -10,7 +10,6 @@ export const fetchForm2 = async (req, res) => {
         const form1User = await form1.findOne({userId: id});
         if (existingUser) {
             const data1 = {
-                status: 200,
                 college: existingUser.universityA,
                 stream: existingUser.department,
                 supervisor: existingUser.nameOfPhDSupervisor,
