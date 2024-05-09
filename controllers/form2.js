@@ -196,7 +196,7 @@ export const fetchForm2 = async (req, res) => {
     }
 };
 
-export const updateForm1 = async (req, res) => {
+export const updateForm2 = async (req, res) => {
     const userId = req.params.userId;
     const id = new ObjectId(userId); 
     try {
