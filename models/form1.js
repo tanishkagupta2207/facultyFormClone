@@ -1,3 +1,4 @@
+import { Int32 } from 'mongodb';
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
@@ -53,6 +54,12 @@ const form1Schema = new Schema({
     },
     dateOfBirth: {
         type: date
+    },
+    age: {
+        type: Int32
+    },
+    ageDays: {
+        type: Int32
     },
     gender: {
         type: String
