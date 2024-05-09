@@ -1,4 +1,3 @@
-import { Int32 } from 'mongodb';
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
@@ -10,14 +9,6 @@ const form1Schema = new Schema({
     emailId: {
         type: String
     },
-    userfirstName: {
-        type: String,
-        required: true
-    },
-    userlastName: {
-        type: String,
-        required: true
-    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
@@ -26,7 +17,6 @@ const form1Schema = new Schema({
     applicationNumber: {
         type: Number,
         required: true,
-        unique: true
     },
     advertisementNumber: {
         type: String
