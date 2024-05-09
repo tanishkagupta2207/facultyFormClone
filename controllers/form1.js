@@ -93,6 +93,7 @@ export const updateForm1 = async (req, res) => {
                 existingUser.alternateEmailId = email2;
                 existingUser.landlineNumber = landline;
                 await existingUser.save();
+                return res.json({message: 'Successful'});
         } else {
             return res.json({ message: 'Invalid User' });
         }
