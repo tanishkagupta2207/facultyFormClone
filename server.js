@@ -7,6 +7,7 @@ import activateRoute from './routes/activationRoute.js';
 import forgetPasswordRoute from './routes/forgetPasswordRoute.js';
 import resetPasswordRoute from './routes/resetPasswordRoute.js';
 import form1Route from './routes/form1Route.js';
+import form2Route from './routes/form2Route.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -27,6 +28,7 @@ app.use('/api/activate', activateRoute);
 app.use('/api/forgetPassword', forgetPasswordRoute);
 app.use('/api/resetPassword', resetPasswordRoute);
 app.use('/api/form1',form1Route);
+app.use('/api/form2',form2Route);
 
 
 // Connect to MongoDB and start the server
