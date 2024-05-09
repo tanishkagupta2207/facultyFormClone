@@ -27,6 +27,9 @@ const form1Schema = new Schema({
     postApplied: {
         type: String
     },
+    disabilityType: {
+        type: String
+    },
     department: {
         type: String
     },
