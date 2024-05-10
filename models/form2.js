@@ -29,10 +29,10 @@ const form2Schema = new Schema({
         type: String
     },
     dateOfSuccessfulThesisDefence: { 
-        type: Date
+        type: String
     },
     dateOfAward: { 
-        type: Date,  
+        type: String,  
     },
     titleOfPhDThesisA: {
         type: String,
@@ -85,28 +85,16 @@ const form2Schema = new Schema({
     divisionC: {
         type: Array,
     },
-    school12: {
+    schoolD: {
         type: Array,
     },
-    school10: {
+    yearOfPassingD: {
         type: Array,
     },
-    yearOfPassing12D: {
+    percentageD: {
         type: Array,
     },
-    yearOfPassing10D: {
-        type: Array,
-    },
-    percentage12D: {
-        type: Array,
-    },
-    percentage10D: {
-        type: Array,
-    },
-    division12D: {
-        type: Array,
-    },
-    division10D: {
+    divisionD: {
         type: Array,
     },
     degreeE: {

@@ -40,21 +40,14 @@ export const fetchForm2 = async (req, res) => {
                 rank: existingUser.divisionC[index],
               }));
               
-              const data4 = existingUser.school10.map((school, index) => ({
+              const data4 = existingUser.schoolD.map((school, index) => ({
                 school: school,
-                passingYear: existingUser.yearOfPassing10D[index],
-                perce: existingUser.percentage10D[index],
-                rank: existingUser.division10D[index],
+                passingYear: existingUser.yearOfPassingD[index],
+                perce: existingUser.percentageD[index],
+                rank: existingUser.divisionD[index],
               }));
               
-              const data5 = existingUser.school12.map((school, index) => ({
-                school: school,
-                passingYear: existingUser.yearOfPassing12D[index],
-                perce: existingUser.percentage12D[index],
-                rank: existingUser.division12D[index],
-              }));
-              
-            const data6 = existingUser.degree.map((degree, index) => ({
+            const data5 = existingUser.degreeE.map((degree, index) => ({
                 degree: degree,
                 college: existingUser.universityE[index],
                 subjects: existingUser.branchE[index],
@@ -71,7 +64,6 @@ export const fetchForm2 = async (req, res) => {
                 data3,
                 data4,
                 data5,
-                data6,
                 fname: existingUser.firstName,
                 lname: existingUser.lastName
             }
@@ -105,14 +97,10 @@ export const fetchForm2 = async (req, res) => {
                 durationC: [null],
                 percentageC: [null],
                 divisionC: [null],
-                school12: [null],
-                school10: [null],
-                yearOfPassing12D: [null],
-                yearOfPassing10D: [null],
-                percentage12D: [null],
-                percentage10D: [null],
-                division12D: [null],
-                division10D: [null],
+                schoolD: [null,null],
+                yearOfPassingD: [null,null],
+                percentageD: [null,null],
+                divisionD: [null,null],
                 degreeE: [],
                 universityE: [],
                 branchE: [],
@@ -122,7 +110,9 @@ export const fetchForm2 = async (req, res) => {
                 percentageE: [],
                 divisionE: []
             });
+
             await newUser.save();
+
             const existingUser2 = await form2.findOne({userId: id});
             if (existingUser2) {
                 const data1 = {
@@ -134,6 +124,7 @@ export const fetchForm2 = async (req, res) => {
                 doa: existingUser2.dateOfAward,
                 title: existingUser2.titleOfPhDThesisA,
             };
+
             const data2 = existingUser2.degreeB.map((degree, index) => ({
                 degree: degree,
                 college: existingUser2.universityB[index],
@@ -143,9 +134,9 @@ export const fetchForm2 = async (req, res) => {
                 duration: existingUser2.durationB[index],
                 perce: existingUser2.percentageB[index],
                 rank: existingUser2.divisionB[index],
-              }));
+            }));
               
-              const data3 = existingUser2.degreeC.map((degree, index) => ({
+            const data3 = existingUser2.degreeC.map((degree, index) => ({
                 degree: degree,
                 college: existingUser2.universityC[index],
                 subjects: existingUser2.branchC[index],
@@ -154,23 +145,15 @@ export const fetchForm2 = async (req, res) => {
                 duration: existingUser2.durationC[index],
                 perce: existingUser2.percentageC[index],
                 rank: existingUser2.divisionC[index],
-              }));
+            }));
               
-              const data4 = existingUser2.school10.map((school, index) => ({
+            const data4 = existingUser2.schoolD.map((school, index) => ({
                 school: school,
-                passingYear: existingUser2.yearOfPassing10D[index],
-                perce: existingUser2.percentage10D[index],
-                rank: existingUser2.division10D[index],
-              }));
-              
-              const data5 = existingUser2.school12.map((school, index) => ({
-                school: school,
-                passingYear: existingUser2.yearOfPassing12D[index],
-                perce: existingUser2.percentage12D[index],
-                rank: existingUser2.division12D[index],
-              }));
-              
-            const data6 = existingUser2.degreeE.map((degree, index) => ({
+                passingYear: existingUser2.yearOfPassingD[index],
+                perce: existingUser2.percentageD[index],
+                rank: existingUser2.divisionD[index],
+            }));
+            const data5 = existingUser2.degreeE.map((degree, index) => ({
                 degree: degree,
                 college: existingUser2.universityE[index],
                 subjects: existingUser2.branchE[index],
@@ -183,12 +166,11 @@ export const fetchForm2 = async (req, res) => {
 
             return res.status(200).json({
                 status : 200,
-                data1,
+                data: data1,
                 data2,
                 data3,
                 data4,
                 data5,
-                data6,
                 fname: existingUser2.firstName,
                 lname: existingUser2.lastName
             });
@@ -207,53 +189,85 @@ export const updateForm2 = async (req, res) => {
     const userId = req.params.userId;
     const id = new ObjectId(userId); 
     try {
-        const existingUser = await form1.findOne({userId: id});
+        const existingUser = await form2.findOne({userId: id});
         if (existingUser) {
                 const {phdDetails, additionalDetails, schoolDetails, ugDetails, pgDetails} = req.body;
-
                 existingUser.universityA = phdDetails.college;
-                existingUser.stream = phdDetails.stream;
-                existingUser.supervisor = phdDetails.supervisor;
-                existingUser.yoj = phdDetails.yoj;
-                existingUser.dod = phdDetails.dod;
-                existingUser.doa = phdDetails.doa;
-                existingUser.title = phdDetails.title;
+                existingUser.department = phdDetails.stream;
+                existingUser.nameOfPhDSupervisor = phdDetails.supervisor;
+                existingUser.yearOfJoiningA = phdDetails.yoj;
+                existingUser.dateOfSuccessfulThesisDefence = phdDetails.dod;
+                existingUser.dateOfAward = phdDetails.doa;
+                existingUser.titleOfPhDThesisA = phdDetails.title;
 
-                const mappedArray = pgDetails.map((element, index) => ({
-                    [degreeB[index]]: element.degree,
-                    [universityB[index]]: element.college,
-                    [branchB[index]]: element.subjects,
-                    [yearOfJoiningB[index]]: element.yoj,
-                    [yearOfCompletionB[index]]: element.yog,
-                    [durationB[index]]: element.duration,
-                    [percentageB[index]]: element.perce,
-                    [divisionB[index]]: element.rank,
-                }));
-                const mappedArray2 = ugDetails.map((element, index) => ({
-                    [degreeC[index]]: element.degree,
-                    [universityC[index]]: element.college,
-                    [branchC[index]]: element.subjects,
-                    [yearOfJoiningC[index]]: element.yoj,
-                    [yearOfCompletionC[index]]: element.yog,
-                    [durationC[index]]: element.duration,
-                    [percentageC[index]]: element.perce,
-                    [divisionC[index]]: element.rank,
-                }));
+                existingUser.degreeB=[];
+                existingUser.universityB=[];
+                existingUser.branchB=[];
+                existingUser.yearOfCompletionB=[];
+                existingUser.yearOfJoiningB=[];
+                existingUser.durationB=[];
+                existingUser.percentageB=[];
+                existingUser.divisionB=[];
+                console.log("1");
+                pgDetails.forEach(item => {
+                    existingUser.degreeB.push(item.degree);
+                    existingUser.universityB.push(item.college);
+                    existingUser.branchB.push(item.subjects);
+                    existingUser.yearOfJoiningB.push(item.yoj);
+                    existingUser.yearOfCompletionB.push(item.yog);
+                    existingUser.durationB.push(item.duration);
+                    existingUser.percentageB.push(item.perce);
+                    existingUser.divisionB.push(item.rank);
+                });
+                console.log("@");
+                existingUser.degreeC=[];
+                existingUser.universityC=[];
+                existingUser.branchC=[];
+                existingUser.yearOfJoiningC=[];
+                existingUser.yearOfCompletionC=[];
+                existingUser.durationC=[];
+                existingUser.percentageC=[];
+                existingUser.divisionC=[];
+                ugDetails.forEach(item => {
+                    existingUser.degreeC.push(item.degree);
+                    existingUser.universityC.push(item.college);
+                    existingUser.branchC.push(item.subjects);
+                    existingUser.yearOfJoiningC.push(item.yoj);
+                    existingUser.yearOfCompletionC.push(item.yog);
+                    existingUser.durationC.push(item.duration);
+                    existingUser.percentageC.push(item.perce);
+                    existingUser.divisionC.push(item.rank);
+                });
                 
-                existingUser.school10 = passingYear4;
-                existingUser.passingYear10D = perce4;
-                existingUser.percentage10D = rank4;
-                existingUser.school12 = passingYear5;
-                existingUser.yearOfPassing12D = perce5;
-                existingUser.percentage12D = rank5;
-                existingUser.degreeE = college6;
-                existingUser.universityE = subjects6;
-                existingUser.branchE = yoj6;
-                existingUser.yearOfCompletionE = yog6;
-                existingUser.yearOfCompletionE = duration6;
-                existingUser.durationE = perce6;
-                existingUser.percentageE = rank6;
+                console.log("@2");
+                existingUser.schoolD = [];
+                existingUser.yearOfPassingD = [];
+                existingUser.percentageD = [];
+                existingUser.divisionD=[];
+                schoolDetails.forEach(item => {
+                    existingUser.schoolD.push(item.school);
+                    existingUser.yearOfPassingD.push(item.passingYear);
+                    existingUser.percentageD.push(item.perce);
+                    existingUser.divisionD.push(item.rank);
+                });
+                
+                console.log("@3");
+                additionalDetails.forEach(item => {
+                    existingUser.degreeE.push(item.degree);
+                    existingUser.universityE.push(item.college);
+                    existingUser.branchE.push(item.subjects);
+                    existingUser.yearOfJoiningE.push(item.yoj);
+                    existingUser.yearOfCompletionE.push(item.yog);
+                    existingUser.durationE.push(item.duration);
+                    existingUser.percentageE.push(item.perce);
+                    existingUser.divisionE.push(item.rank);
+                });
+                
+                console.log("@4");
                 await existingUser.save();
+                console.log("done");
+                return res.json({message: 'Successful'});
+
         } else {
             return res.json({ message: 'Invalid User' });
         }
