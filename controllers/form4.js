@@ -191,7 +191,7 @@ export const updateForm4 = async (req, res) => {
                 existingUser.numberOfPatents = summaryOfPublication.noPat;
                 existingUser.numberOfBooks = summaryOfPublication.noBooks;
                 existingUser.numberOfBookChapters = summaryOfPublication.noBookChap;
-                console.log("1",existingUser);
+                // console.log("1",existingUser);
                 existingUser.author = []
                 existingUser.title = []
                 existingUser.nameOfJournal = []
@@ -209,7 +209,7 @@ export const updateForm4 = async (req, res) => {
                     existingUser.doi.push(item.doi);
                     existingUser.status.push(item.status);
                 });
-                console.log("2",existingUser);
+                // console.log("2",existingUser);
                 existingUser.Inventor = []
                 existingUser.titleOfPatent = []
                 existingUser.countryOfPatent = []
@@ -254,7 +254,7 @@ export const updateForm4 = async (req, res) => {
                 });
 
                 existingUser.url = gschlink;
-                console.log("5",existingUser);
+                // console.log("5",existingUser);
                 await existingUser.save();
                 return res.json({message: 'Successful'});
 
@@ -263,6 +263,7 @@ export const updateForm4 = async (req, res) => {
         }
 
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
