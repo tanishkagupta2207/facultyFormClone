@@ -1,107 +1,108 @@
 import mongoose from 'mongoose';
-
 const { Schema } = mongoose;
 
 const form4Schema = new Schema({
+    firstName: { 
+        type: String, 
+        required: true 
+    },
+    lastName: { 
+        type: String, 
+        required: true 
+    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
         required: true
     },
-    presentPosition: {
-        type: String,
+    numberOfInternationalJournalPapers: { 
+        type: Number
     },
-    presentOrganization: {
-        type: String
+    numberOfNationalJournalPapers: { 
+        type: Number
     },
-    presentStatus: {
-        type: String
+    numberOfInternationalConferencePapers: { 
+        type: Number
     },
-    dateOfJoining: {
-        type: date
+    numberOfNationalConferencePapers: { 
+        type: Number
     },
-    dateOfLeaving: {
-        type: String
+    numberOfPatents: { 
+        type: Number
     },
-    duration: {
-        type: String
+    numberOfBooks: { 
+        type: Number
     },
-    positionB: {
+    numberOfBookChapters: { 
+        type: Number
+    },
+    author: { 
         type: Array
     },
-    organizationB: {
+    title: { 
         type: Array
     },
-    dateOfJoiningB: {
+    nameOfJournal: { 
+        type: Array 
+    },
+    yearVolPage: {
         type: Array
     },
-    dateOfLeavingB: {
+    impactFactor: { 
         type: Array
     },
-    durationB: {
+    doi: { 
         type: Array
     },
-    positionC: {
+    status: { 
         type: Array
     },
-    employerC: {
+    Inventor:{
         type: Array
     },
-    courseC: {
+    titleOfPatent:{
         type: Array
     },
-    ugOrPgC: {
+    countryOfPatent:{
         type: Array
     },
-    noOfStudentsC: {
+    patentNumber:{
         type: Array
     },
-    dateOfJoiningC: {
+    dateOfFilling:{
         type: Array
     },
-    dateOfLeavingC: {
+    dateOfPublished:{
         type: Array
     },
-    durationC: {
+    statusA:{
         type: Array
     },
-    positionD: {
+    authorB:{
         type: Array
     },
-    innstituteD: {
+    titleB:{
         type: Array
     },
-    supervisorD: {
+    yearOfPublicationB:{
         type: Array
     },
-    dateOfJoiningD: {
+    isbnB:{
         type: Array
     },
-    dateOfLeavingD: {
+    authorC:{
         type: Array
     },
-    durationD: {
+    titleC:{
         type: Array
     },
-    organizationE: {
+    yearOfPublicationC:{
         type: Array
     },
-    workDateE: {
+    isbnC:{
         type: Array
     },
-    dateOfJoiningE: {
-        type: Array
-    },
-    dateOfLeavingE: {
-        type: Array
-    },
-    durationE: {
-        type: Array
-    },
-    areaOfSpecialization: {
-        type: String
-    },
-    currentAreaOfResearch: {
+    url:{
         type: String
     }
 });
