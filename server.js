@@ -9,6 +9,7 @@ import resetPasswordRoute from './routes/resetPasswordRoute.js';
 import form1Route from './routes/form1Route.js';
 import form2Route from './routes/form2Route.js';
 import form3Route from './routes/form3Route.js';
+import form4Route from './routes/form4Route.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -31,6 +32,7 @@ app.use('/api/resetPassword', resetPasswordRoute);
 app.use('/api/form1',form1Route);
 app.use('/api/form2',form2Route);
 app.use('/api/form3',form3Route);
+app.use('/api/form4',form4Route);
 
 
 // Connect to MongoDB and start the server
