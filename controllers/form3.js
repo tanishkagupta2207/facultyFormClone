@@ -49,7 +49,7 @@ export const fetchForm3 = async (req, res) => {
                 dol: existingUser.dateOfLeavingE[index],
                 duration: existingUser.durationE[index],
             }));
-            
+            console.log(data2);
             return res.status(200).json({
                 status : 200,
                 data1,
@@ -57,10 +57,10 @@ export const fetchForm3 = async (req, res) => {
                 data3,
                 data4,
                 data5,
-                data: existingUser.specialization,
-                data: existingUser.research,
-                data: existingUser.firstName,
-                data: existingUser.lastName
+                data6: existingUser.specialization,
+                data7: existingUser.research,
+                data8: existingUser.firstName,
+                data9: existingUser.lastName
             }
         );
         }
@@ -100,8 +100,8 @@ export const fetchForm3 = async (req, res) => {
                 dateOfJoiningE: [null],
                 dateOfLeavingE: [null],
                 durationE: [null],
-                specialization: null,
-                research: null
+                specialization: '',
+                research: ''
             });
     
             await newUser.save();
@@ -132,7 +132,7 @@ export const fetchForm3 = async (req, res) => {
                     dol: existingUser2.dateOfLeavingInstitute[index],
                     duration: existingUser2.durationC[index],
                 }));
-                const data4 = existingUser2.positionB.map((position, index) => ({
+                const data4 = existingUser2.positionD.map((position, index) => ({
                     position: position,
                     institute: existingUser2.instituteD[index],
                     supervisor: existingUser2.supervisor[index],
@@ -155,10 +155,10 @@ export const fetchForm3 = async (req, res) => {
                     data3,
                     data4,
                     data5,
-                    data: existingUser2.specialization,
-                    data: existingUser2.research,
-                    data: existingUser2.firstName,
-                    data: existingUser2.lastName
+                    data6: existingUser2.specialization,
+                    data7: existingUser2.research,
+                    data8: existingUser2.firstName,
+                    data9: existingUser2.lastName
                 }
             );
         }}
@@ -175,19 +175,21 @@ export const fetchForm3 = async (req, res) => {
 export const updateForm3 = async (req, res) => {
     const userId = req.params.userId;
     const id = new ObjectId(userId); 
+    console.log("asd");
     try {
         const existingUser = await form3.findOne({userId:id});
         if (existingUser) {
-                const {data1,data2,data3,data4,data5,specialization,research} = req.body;
+                console.log("asd");
+                const {presentEmployment,experienceDetails,teachingExperience,researchExperience,industrialExperience,areasOfSpecialization,currentAreasOfResearch} = req.body;
                      
-                existingUser.positionA = data1.position;
-                existingUser.organizationA = data1.employer;
-                existingUser.status = data1.status;
-                existingUser.dateOfJoiningA = data1.doj;
-                existingUser.dateOfLeavingA = data1.dol;
-                existingUser.durationA = data1.duration;
+                existingUser.positionA = presentEmployment.position;
+                existingUser.organizationA = presentEmployment.employer;
+                existingUser.status = presentEmployment.status;
+                existingUser.dateOfJoiningA = presentEmployment.doj;
+                existingUser.dateOfLeavingA = presentEmployment.dol;
+                existingUser.durationA = presentEmployment.duration;
 
-                data2.forEach(item => {
+                experienceDetails.forEach(item => {
                     existingUser.positionB.push(item.position);
                     existingUser.organizationB.push(item.employer);
                     existingUser.dateOfJoiningB.push(item.doj);
@@ -195,8 +197,8 @@ export const updateForm3 = async (req, res) => {
                     existingUser.durationB.push(item.duration);
                 });
 
-                data3.forEach(item =>{
-                    existingUser.positionC.item(item.position);
+                teachingExperience.forEach(item =>{
+                    existingUser.positionC.push(item.position);
                     existingUser.employer.push(item.employer);
                     existingUser.courseTaught.push(item.course);
                     existingUser.ugPg.push(item.ugpg);
@@ -206,16 +208,16 @@ export const updateForm3 = async (req, res) => {
                     existingUser.durationC.push(item.duration);
                 });
 
-                data4.forEach(item =>{
-                    existingUser.positionD.item(item.position);
+                researchExperience.forEach(item =>{
+                    existingUser.positionD.push(item.position);
                     existingUser.instituteD.push(item.institute);
-                    existingUser.supervisorinstituteD.push(item.supervisor);
-                    existingUser.dateOfJoiningDinstituteD.push(item.doj);
-                    existingUser.dateOfLeavingDinstituteD.push(item.dol);
-                    existingUser.durationDinstituteD.push(item.duration);
+                    existingUser.supervisor.push(item.supervisor);
+                    existingUser.dateOfJoiningD.push(item.doj);
+                    existingUser.dateOfLeavingD.push(item.dol);
+                    existingUser.durationD.push(item.duration);
                 });
 
-                data5.forEach(item =>{
+                industrialExperience.forEach(item =>{
                 existingUser.organizationE.push(item.organization);
                 existingUser.workProfile.push(work);
                 existingUser.dateOfJoiningE.push(doj);
@@ -223,11 +225,14 @@ export const updateForm3 = async (req, res) => {
                 existingUser.durationE.push(duration);
                 });
 
-                existingUser.specialization = specialization;
-                existingUser.research = research;
-
+                existingUser.specialization = areasOfSpecialization;
+                existingUser.research = currentAreasOfResearch;
+                console.log("ds");
                 await existingUser.save();
-        } else {
+                console.log("Ds");
+                return res.json({ message: 'Successful' });
+        }
+         else {
             return res.json({ message: 'Invalid User' });
         }
 

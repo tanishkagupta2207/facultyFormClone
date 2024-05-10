@@ -48,10 +48,6 @@ const form3Schema = new Schema({
     durationB: {
         type: Array,
     },
-    experience:
-    {
-        type: Array
-    },
     positionC: { 
         type: Array
     },
