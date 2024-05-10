@@ -180,40 +180,36 @@ export const updateForm3 = async (req, res) => {
                     college6, subjects6, yoj6, yog6, duration6, perce6, rank6
                      } = req.body;
                      
-                existingUser.universityA = stream1;
-                existingUser.stream = department1;
-                existingUser.supervisor = nameOfPhDSupervisor1;
-                existingUser.yoj = yearOfJoiningA1;
-                existingUser.dod = dateOfSuccessfulThesisDefence1;
-                existingUser.doa = dateOfAward1;
-                existingUser.title = titleOfPhDThesisA1;
-                existingUser.degreeB = college2;
-                existingUser.college = subjects2;
-                existingUser.subjects = yoj2;
-                existingUser.yoj = yog2;
-                existingUser.yog = duration2;
-                existingUser.duration = perce2;
-                existingUser.perce = rank2;
-                existingUser.degreeC = college3;
-                existingUser.college = subjects3;
-                existingUser.subjects = yoj3;
-                existingUser.yoj = yog3;
-                existingUser.yog = duration3;
-                existingUser.duration = perce3;
-                existingUser.perce = rank3;
-                existingUser.school10 = passingYear4;
-                existingUser.passingYear10D = perce4;
-                existingUser.percentage10D = rank4;
-                existingUser.school12 = passingYear5;
-                existingUser.yearOfPassing12D = perce5;
-                existingUser.percentage12D = rank5;
-                existingUser.degreeE = college6;
-                existingUser.universityE = subjects6;
-                existingUser.branchE = yoj6;
-                existingUser.yearOfCompletionE = yog6;
-                existingUser.yearOfCompletionE = duration6;
-                existingUser.durationE = perce6;
-                existingUser.percentageE = rank6;
+                    existingUser.positionA = position1;
+                    existingUser.organizationA =  employer,
+                     status: existingUser.status,
+                     doj: existingUser.dateOfJoiningA,
+                     dol: existingUser.dateOfLeavingA,
+                     duration: existingUser.durationA,
+                  position: existingUser.positionB,
+                     employer: existingUser.organizationB,
+                     doj: existingUser.dateOfJoiningB,
+                     dol: existingUser.dateOfLeavingB,
+                     duration: existingUser.durationB,
+ position: existingUser.positionC,
+                     employer: existingUser.employer,
+                     course: existingUser.courseTaught,
+                     ugpg: existingUser.ugPg,
+                     no_students: existingUser.noOfStudents,
+                     doj: existingUser.dateOfJoiningInstitute,
+                     dol: existingUser.dateOfLeavingInstitute,
+                     duration: existingUser.durationC,
+ position: existingUser.positionD,
+                     institute: existingUser.instituteD,
+                     supervisor: existingUser.supervisor,
+                     doj: existingUser.dateOfJoiningD,
+                     dol: existingUser.dateOfLeavingD,
+                     duration: existingUser.durationD,
+ organization: existingUser.organizationE,
+                     work: existingUser.workProfile,
+                     doj: existingUser.dateOfJoiningE,
+                     dol: existingUser.dateOfLeavingE,
+                     duration: existingUser.durationE,
                 await existingUser.save();
         } else {
             return res.json({ message: 'Invalid User' });
