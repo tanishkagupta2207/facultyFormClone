@@ -208,7 +208,6 @@ export const updateForm2 = async (req, res) => {
                 existingUser.durationB=[];
                 existingUser.percentageB=[];
                 existingUser.divisionB=[];
-                console.log("1");
                 pgDetails.forEach(item => {
                     existingUser.degreeB.push(item.degree);
                     existingUser.universityB.push(item.college);
@@ -219,7 +218,6 @@ export const updateForm2 = async (req, res) => {
                     existingUser.percentageB.push(item.perce);
                     existingUser.divisionB.push(item.rank);
                 });
-                console.log("@");
                 existingUser.degreeC=[];
                 existingUser.universityC=[];
                 existingUser.branchC=[];
@@ -239,7 +237,6 @@ export const updateForm2 = async (req, res) => {
                     existingUser.divisionC.push(item.rank);
                 });
                 
-                console.log("@2");
                 existingUser.schoolD = [];
                 existingUser.yearOfPassingD = [];
                 existingUser.percentageD = [];
@@ -250,8 +247,14 @@ export const updateForm2 = async (req, res) => {
                     existingUser.percentageD.push(item.perce);
                     existingUser.divisionD.push(item.rank);
                 });
-                
-                console.log("@3");
+                existingUser.degreeE=[];
+                existingUser.universityE=[];
+                existingUser.branchE=[];
+                existingUser.yearOfJoiningE=[];
+                existingUser.yearOfCompletionE=[];
+                existingUser.durationE=[];
+                existingUser.percentageE=[];
+                existingUser.divisionE=[];
                 additionalDetails.forEach(item => {
                     existingUser.degreeE.push(item.degree);
                     existingUser.universityE.push(item.college);
@@ -263,9 +266,7 @@ export const updateForm2 = async (req, res) => {
                     existingUser.divisionE.push(item.rank);
                 });
                 
-                console.log("@4");
                 await existingUser.save();
-                console.log("done");
                 return res.json({message: 'Successful'});
 
         } else {
