@@ -49,7 +49,7 @@ export const fetchForm3 = async (req, res) => {
                 dol: existingUser.dateOfLeavingE[index],
                 duration: existingUser.durationE[index],
             }));
-            console.log(data2);
+            
             return res.status(200).json({
                 status : 200,
                 data1,
@@ -173,23 +173,26 @@ export const fetchForm3 = async (req, res) => {
 };
 
 export const updateForm3 = async (req, res) => {
+
     const userId = req.params.userId;
+    console.log("123");
     const id = new ObjectId(userId); 
     console.log("asd");
     try {
         const existingUser = await form3.findOne({userId:id});
+        console.log(existingUser);
         if (existingUser) {
                 console.log("asd");
                 const {presentEmployment,experienceDetails,teachingExperience,researchExperience,industrialExperience,areasOfSpecialization,currentAreasOfResearch} = req.body;
                      
-                existingUser.positionA = presentEmployment.position;
-                existingUser.organizationA = presentEmployment.employer;
-                existingUser.status = presentEmployment.status;
-                existingUser.dateOfJoiningA = presentEmployment.doj;
-                existingUser.dateOfLeavingA = presentEmployment.dol;
-                existingUser.durationA = presentEmployment.duration;
+                existingUser.positionA = data1.position;
+                existingUser.organizationA = data1.employer;
+                existingUser.status = data1.status;
+                existingUser.dateOfJoiningA = data1.doj;
+                existingUser.dateOfLeavingA = data1.dol;
+                existingUser.durationA = data1.duration;
 
-                experienceDetails.forEach(item => {
+                data2.forEach(item => {
                     existingUser.positionB.push(item.position);
                     existingUser.organizationB.push(item.employer);
                     existingUser.dateOfJoiningB.push(item.doj);
@@ -197,8 +200,8 @@ export const updateForm3 = async (req, res) => {
                     existingUser.durationB.push(item.duration);
                 });
 
-                teachingExperience.forEach(item =>{
-                    existingUser.positionC.push(item.position);
+                data3.forEach(item =>{
+                    existingUser.positionC.item(item.position);
                     existingUser.employer.push(item.employer);
                     existingUser.courseTaught.push(item.course);
                     existingUser.ugPg.push(item.ugpg);
@@ -208,35 +211,33 @@ export const updateForm3 = async (req, res) => {
                     existingUser.durationC.push(item.duration);
                 });
 
-                researchExperience.forEach(item =>{
-                    existingUser.positionD.push(item.position);
+                data4.forEach(item =>{
+                    existingUser.positionD.item(item.position);
                     existingUser.instituteD.push(item.institute);
-                    existingUser.supervisor.push(item.supervisor);
-                    existingUser.dateOfJoiningD.push(item.doj);
-                    existingUser.dateOfLeavingD.push(item.dol);
-                    existingUser.durationD.push(item.duration);
+                    existingUser.supervisorinstituteD.push(item.supervisor);
+                    existingUser.dateOfJoiningDinstituteD.push(item.doj);
+                    existingUser.dateOfLeavingDinstituteD.push(item.dol);
+                    existingUser.durationDinstituteD.push(item.duration);
                 });
 
-                industrialExperience.forEach(item =>{
+                data5.forEach(item =>{
                 existingUser.organizationE.push(item.organization);
-                existingUser.workProfile.push(work);
-                existingUser.dateOfJoiningE.push(doj);
-                existingUser.dateOfLeavingE.push(dol);
-                existingUser.durationE.push(duration);
+                existingUser.workProfile.push(item.work);
+                existingUser.dateOfJoiningE.push(item.doj);
+                existingUser.dateOfLeavingE.push(item.dol);
+                existingUser.durationE.push(item.duration);
                 });
 
-                existingUser.specialization = areasOfSpecialization;
-                existingUser.research = currentAreasOfResearch;
-                console.log("ds");
+                existingUser.specialization = specialization;
+                existingUser.research = research;
+
                 await existingUser.save();
-                console.log("Ds");
-                return res.json({ message: 'Successful' });
-        }
-         else {
+        } else {
             return res.json({ message: 'Invalid User' });
         }
 
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' });
+        return res.json({ message: 'Error updating' });
     }
 };
