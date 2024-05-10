@@ -17,38 +17,39 @@ export const fetchForm3 = async (req, res) => {
                 dol: existingUser.dateOfLeavingA,
                 duration: existingUser.durationA
             };
-            const data2 = {
-                position: existingUser.positionB,
-                employer: existingUser.organizationB,
-                doj: existingUser.dateOfJoiningB,
-                dol: existingUser.dateOfLeavingB,
-                duration: existingUser.durationB,
-            };
-            const data3 = {
-                position: existingUser.positionC,
-                employer: existingUser.employer,
-                course: existingUser.courseTaught,
-                ugpg: existingUser.ugPg,
-                no_students: existingUser.noOfStudents,
-                doj: existingUser.dateOfJoiningInstitute,
-                dol: existingUser.dateOfLeavingInstitute,
-                duration: existingUser.durationC,
-            };
-            const data4 = {
-                position: existingUser.positionD,
-                institute: existingUser.instituteD,
-                supervisor: existingUser.supervisor,
-                doj: existingUser.dateOfJoiningD,
-                dol: existingUser.dateOfLeavingD,
-                duration: existingUser.durationD,
-            };
-            const data5 = {
-                organization: existingUser.organizationE,
-                work: existingUser.workProfile,
-                doj: existingUser.dateOfJoiningE,
-                dol: existingUser.dateOfLeavingE,
-                duration: existingUser.durationE,
-            };
+            const data2 = existingUser.positionB.map((position, index) => ({
+                position: position,
+                employer: existingUser.organizationB[index],
+                doj: existingUser.dateOfJoiningB[index],
+                dol: existingUser.dateOfLeavingB[index],
+                duration: existingUser.durationB[index],
+            }));
+            const data3 = existingUser.positionC.map((position, index) => ({
+                position: position,
+                employer: existingUser.employer[index],
+                course: existingUser.courseTaught[index],
+                ugpg: existingUser.ugPg[index],
+                no_students: existingUser.noOfStudents[index],
+                doj: existingUser.dateOfJoiningInstitute[index],
+                dol: existingUser.dateOfLeavingInstitute[index],
+                duration: existingUser.durationC[index],
+            }));
+            const data4 = existingUser.positionD.map((position, index) => ({
+                position: position,
+                institute: existingUser.instituteD[index],
+                supervisor: existingUser.supervisor[index],
+                doj: existingUser.dateOfJoiningD[index],
+                dol: existingUser.dateOfLeavingD[index],
+                duration: existingUser.durationD[index],
+            }));
+            const data5 = existingUser.organizationE.map((organization, index) => ({
+                organization: organization,
+                work: existingUser.workProfile[index],
+                doj: existingUser.dateOfJoiningE[index],
+                dol: existingUser.dateOfLeavingE[index],
+                duration: existingUser.durationE[index],
+            }));
+            
             return res.status(200).json({
                 status : 200,
                 data1,
@@ -56,6 +57,8 @@ export const fetchForm3 = async (req, res) => {
                 data3,
                 data4,
                 data5,
+                data: existingUser.specialization,
+                data: existingUser.research,
                 data: existingUser.firstName,
                 data: existingUser.lastName
             }
@@ -72,31 +75,31 @@ export const fetchForm3 = async (req, res) => {
                 dateOfJoiningA: null,
                 dateOfLeavingA: null,
                 durationA: null,
-                positionB: [],
-                organizationB: [],
-                dateOfJoiningB: [],
-                dateOfLeavingB: [],
-                durationB: [],
-                experience: [],
-                positionC: [],
-                employer: [],
-                courseTaught: [],
-                ugPg: [],
-                noOfStudents: [],
-                dateOfJoiningInstitute: [],
-                dateOfLeavingInstitute: [],
-                durationC: [],
-                positionD: [],
-                instituteD: [],
-                supervisor: [],
-                dateOfJoiningD: [],
-                dateOfLeavingD: [],
-                durationD: [],
-                organizationE: [],
-                workProfile: [],
-                dateOfJoiningE: [],
-                dateOfLeavingE: [],
-                durationE: [],
+                positionB: [null],
+                organizationB: [null],
+                dateOfJoiningB: [null],
+                dateOfLeavingB: [null],
+                durationB: [null],
+                experience: [null],
+                positionC: [null],
+                employer: [null],
+                courseTaught: [null],
+                ugPg: [null],
+                noOfStudents: [null],
+                dateOfJoiningInstitute: [null],
+                dateOfLeavingInstitute: [null],
+                durationC: [null],
+                positionD: [null],
+                instituteD: [null],
+                supervisor: [null],
+                dateOfJoiningD: [null],
+                dateOfLeavingD: [null],
+                durationD: [null],
+                organizationE: [null],
+                workProfile: [null],
+                dateOfJoiningE: [null],
+                dateOfLeavingE: [null],
+                durationE: [null],
                 specialization: null,
                 research: null
             });
@@ -105,56 +108,59 @@ export const fetchForm3 = async (req, res) => {
             const existingUser2 = await form3.findOne({userId: id});
             if (existingUser2) {
                 const data1 = {
-                    position: existingUser.positionA,
-                    employer: existingUser.organizationA,
-                    status: existingUser.status,
-                    doj: existingUser.dateOfJoiningA,
-                    dol: existingUser.dateOfLeavingA,
-                    duration: existingUser.durationA
+                    position: existingUser2.positionA,
+                    employer: existingUser2.organizationA,
+                    status: existingUser2.status,
+                    doj: existingUser2.dateOfJoiningA,
+                    dol: existingUser2.dateOfLeavingA,
+                    duration: existingUser2.durationA
                 };
-                const data2 = {
-                    position: existingUser.positionB,
-                    employer: existingUser.organizationB,
-                    doj: existingUser.dateOfJoiningB,
-                    dol: existingUser.dateOfLeavingB,
-                    duration: existingUser.durationB,
-                };
-                const data3 = {
-                    position: existingUser.positionC,
-                    employer: existingUser.employer,
-                    course: existingUser.courseTaught,
-                    ugpg: existingUser.ugPg,
-                    no_students: existingUser.noOfStudents,
-                    doj: existingUser.dateOfJoiningInstitute,
-                    dol: existingUser.dateOfLeavingInstitute,
-                    duration: existingUser.durationC,
-                };
-                const data4 = {
-                    position: existingUser.positionD,
-                    institute: existingUser.instituteD,
-                    supervisor: existingUser.supervisor,
-                    doj: existingUser.dateOfJoiningD,
-                    dol: existingUser.dateOfLeavingD,
-                    duration: existingUser.durationD,
-                };
-                const data5 = {
-                    organization: existingUser.organizationE,
-                    work: existingUser.workProfile,
-                    doj: existingUser.dateOfJoiningE,
-                    dol: existingUser.dateOfLeavingE,
-                    duration: existingUser.durationE,
-                };
-
-            return res.status(200).json({
-                status : 200,
-                data1,
-                data2,
-                data3,
-                data4,
-                data5,
-                data6 : existingUser2.firstName,
-                data7: existingUser2.lastName
-            });
+                const data2 = existingUser2.positionB.map((position, index) => ({
+                    position: position,
+                    employer: existingUser2.organizationB[index],
+                    doj: existingUser2.dateOfJoiningB[index],
+                    dol: existingUser2.dateOfLeavingB[index],
+                    duration: existingUser2.durationB[index],
+                }));
+                const data3 = existingUser2.positionC.map((position, index) => ({
+                    position: position,
+                    employer: existingUser2.employer[index],
+                    course: existingUser2.courseTaught[index],
+                    ugpg: existingUser2.ugPg[index],
+                    no_students: existingUser2.noOfStudents[index],
+                    doj: existingUser2.dateOfJoiningInstitute[index],
+                    dol: existingUser2.dateOfLeavingInstitute[index],
+                    duration: existingUser2.durationC[index],
+                }));
+                const data4 = existingUser2.positionB.map((position, index) => ({
+                    position: position,
+                    institute: existingUser2.instituteD[index],
+                    supervisor: existingUser2.supervisor[index],
+                    doj: existingUser2.dateOfJoiningD[index],
+                    dol: existingUser2.dateOfLeavingD[index],
+                    duration: existingUser2.durationD[index],
+                }));
+                const data5 = existingUser2.organizationE.map((organization, index) => ({
+                    organization: organization,
+                    work: existingUser2.workProfile[index],
+                    doj: existingUser2.dateOfJoiningE[index],
+                    dol: existingUser2.dateOfLeavingE[index],
+                    duration: existingUser2.durationE[index],
+                }));
+                
+                return res.status(200).json({
+                    status : 200,
+                    data1,
+                    data2,
+                    data3,
+                    data4,
+                    data5,
+                    data: existingUser2.specialization,
+                    data: existingUser2.research,
+                    data: existingUser2.firstName,
+                    data: existingUser2.lastName
+                }
+            );
         }}
         
         else {
@@ -170,46 +176,56 @@ export const updateForm3 = async (req, res) => {
     const userId = req.params.userId;
     const id = new ObjectId(userId); 
     try {
-        const existingUser = await form1.findById(id);
+        const existingUser = await form3.findOne({userId:id});
         if (existingUser) {
-                const {stream1, department1, nameOfPhDSupervisor1, yearOfJoiningA1, dateOfSuccessfulThesisDefence1, dateOfAward1, titleOfPhDThesisA1, 
-                    college2, subjects2, yoj2, yog2, duration2, perce2, rank2, 
-                    college3, subjects3, yoj3, yog3, duration3, perce3, rank3, 
-                    passingYear4, perce4, rank4, 
-                    passingYear5, perce5, rank5, 
-                    college6, subjects6, yoj6, yog6, duration6, perce6, rank6
-                     } = req.body;
+                const {data1,data2,data3,data4,data5,specialization,research} = req.body;
                      
-                    existingUser.positionA = position1;
-                    existingUser.organizationA =  employer,
-                     status: existingUser.status,
-                     doj: existingUser.dateOfJoiningA,
-                     dol: existingUser.dateOfLeavingA,
-                     duration: existingUser.durationA,
-                  position: existingUser.positionB,
-                     employer: existingUser.organizationB,
-                     doj: existingUser.dateOfJoiningB,
-                     dol: existingUser.dateOfLeavingB,
-                     duration: existingUser.durationB,
- position: existingUser.positionC,
-                     employer: existingUser.employer,
-                     course: existingUser.courseTaught,
-                     ugpg: existingUser.ugPg,
-                     no_students: existingUser.noOfStudents,
-                     doj: existingUser.dateOfJoiningInstitute,
-                     dol: existingUser.dateOfLeavingInstitute,
-                     duration: existingUser.durationC,
- position: existingUser.positionD,
-                     institute: existingUser.instituteD,
-                     supervisor: existingUser.supervisor,
-                     doj: existingUser.dateOfJoiningD,
-                     dol: existingUser.dateOfLeavingD,
-                     duration: existingUser.durationD,
- organization: existingUser.organizationE,
-                     work: existingUser.workProfile,
-                     doj: existingUser.dateOfJoiningE,
-                     dol: existingUser.dateOfLeavingE,
-                     duration: existingUser.durationE,
+                existingUser.positionA = data1.position;
+                existingUser.organizationA = data1.employer;
+                existingUser.status = data1.status;
+                existingUser.dateOfJoiningA = data1.doj;
+                existingUser.dateOfLeavingA = data1.dol;
+                existingUser.durationA = data1.duration;
+
+                data2.forEach(item => {
+                    existingUser.positionB.push(item.position);
+                    existingUser.organizationB.push(item.employer);
+                    existingUser.dateOfJoiningB.push(item.doj);
+                    existingUser.dateOfLeavingB.push(item.dol);
+                    existingUser.durationB.push(item.duration);
+                });
+
+                data3.forEach(item =>{
+                    existingUser.positionC.item(item.position);
+                    existingUser.employer.push(item.employer);
+                    existingUser.courseTaught.push(item.course);
+                    existingUser.ugPg.push(item.ugpg);
+                    existingUser.noOfStudents.push(item.no_students);
+                    existingUser.dateOfJoiningInstitute.push(item.doj);
+                    existingUser.dateOfLeavingInstitute.push(item.dol);
+                    existingUser.durationC.push(item.duration);
+                });
+
+                data4.forEach(item =>{
+                    existingUser.positionD.item(item.position);
+                    existingUser.instituteD.push(item.institute);
+                    existingUser.supervisorinstituteD.push(item.supervisor);
+                    existingUser.dateOfJoiningDinstituteD.push(item.doj);
+                    existingUser.dateOfLeavingDinstituteD.push(item.dol);
+                    existingUser.durationDinstituteD.push(item.duration);
+                });
+
+                data5.forEach(item =>{
+                existingUser.organizationE.push(item.organization);
+                existingUser.workProfile.push(work);
+                existingUser.dateOfJoiningE.push(doj);
+                existingUser.dateOfLeavingE.push(dol);
+                existingUser.durationE.push(duration);
+                });
+
+                existingUser.specialization = specialization;
+                existingUser.research = research;
+
                 await existingUser.save();
         } else {
             return res.json({ message: 'Invalid User' });
