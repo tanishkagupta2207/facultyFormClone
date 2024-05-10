@@ -29,85 +29,73 @@ const form2Schema = new Schema({
         type: String
     },
     dateOfSuccessfulThesisDefence: { 
-        type: Date
+        type: String
     },
     dateOfAward: { 
-        type: Date,  
+        type: String,  
     },
     titleOfPhDThesisA: {
         type: String,
     },
     degreeB: {
-        type: String,
+        type: Array,
     },
     universityB: {
-        type: String,
+        type: Array,
     },
     branchB: {
-        type: String,
+        type: Array,
     },
     yearOfJoiningB: {
-        type: String,
+        type: Array,
     },
     yearOfCompletionB: {
-        type: String,
+        type: Array,
     },
     durationB: {
-        type: String,
+        type: Array,
     },
     percentageB: {
-        type: String,
+        type: Array,
     },
     divisionB: {
-        type: String,
+        type: Array,
     },
     degreeC: {
-        type: String,
+        type: Array,
     },
     universityC: {
-        type: String,
+        type: Array,
     },
     branchC: {
-        type: String,
+        type: Array,
     },
     yearOfJoiningC: {
-        type: String,
+        type: Array,
     },
     yearOfCompletionC: {
-        type: String,
+        type: Array,
     },
     durationC: {
-        type: String,
+        type: Array,
     },
     percentageC: {
-        type: String,
+        type: Array,
     },
     divisionC: {
-        type: String,
+        type: Array,
     },
-    school12: {
-        type: String,
+    schoolD: {
+        type: Array,
     },
-    school10: {
-        type: String,
+    yearOfPassingD: {
+        type: Array,
     },
-    yearOfPassing12D: {
-        type: String,
+    percentageD: {
+        type: Array,
     },
-    yearOfPassing10D: {
-        type: String,
-    },
-    percentage12D: {
-        type: String,
-    },
-    percentage10D: {
-        type: String,
-    },
-    division12D: {
-        type: String,
-    },
-    division10D: {
-        type: String,
+    divisionD: {
+        type: Array,
     },
     degreeE: {
         type: Array,
