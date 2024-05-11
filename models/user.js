@@ -28,6 +28,11 @@ const userSchema = new Schema({
         type: String,
         required: true,
         enum: ['activated', 'pending']
+    },
+    formStatus: {
+        type:String,
+        required: true,
+        enum: ['Submitted', 'Not Submitted']
     }
 });
 
