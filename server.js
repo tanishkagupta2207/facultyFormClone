@@ -35,7 +35,7 @@ app.use('/api/form3',form3Route);
 app.use('/api/form4',form4Route);
 
 
-mongoose.connect(MONGODB_URI, { dbName: "facultyForm" })
+mongoose.connect("mongodb://facultyForm-mongo-db/", { dbName: "facultyForm" })
     .then(() => {
         console.log('Connected to MongoDB');
         app.listen(PORT, () => {
