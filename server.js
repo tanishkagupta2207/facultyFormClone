@@ -37,7 +37,6 @@ app.use('/api/form4',form4Route);
 app.use('/api/submit',submitRoute);
 
 
-// Connect to MongoDB and start the server
 mongoose.connect(MONGODB_URI, { dbName: "facultyForm" })
     .then(() => {
         console.log('Connected to MongoDB');
