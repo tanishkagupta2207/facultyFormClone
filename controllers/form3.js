@@ -69,12 +69,12 @@ export const fetchForm3 = async (req, res) => {
                 firstName: form2User.firstName,
                 lastName: form2User.lastName,
                 userId: form2User.userId,
-                positionA: null,
-                organizationA: null,
-                status: null,
-                dateOfJoiningA: null,
-                dateOfLeavingA: null,
-                durationA: null,
+                positionA: '',
+                organizationA: '',
+                status: '',
+                dateOfJoiningA: '',
+                dateOfLeavingA: '',
+                durationA: '',
                 positionB: [null],
                 organizationB: [null],
                 dateOfJoiningB: [null],
@@ -173,16 +173,13 @@ export const fetchForm3 = async (req, res) => {
 };
 
 export const updateForm3 = async (req, res) => {
-    console.log("ds");
     const userId = req.params.userId;
     const id = new ObjectId(userId); 
-    console.log("whu");
     try {
         const existingUser = await form3.findOne({userId:id});
-        console.log("enter");
         if (existingUser) {
                 const {presentEmployment,experienceDetails,teachingExperience,researchExperience,industrialExperience,areasOfSpecialization,currentAreasOfResearch} = req.body;     
-                
+                console.log(presentEmployment);
                 existingUser.positionA = presentEmployment.position;
                 existingUser.organizationA = presentEmployment.employer;
                 existingUser.status = presentEmployment.status;
@@ -253,9 +250,7 @@ export const updateForm3 = async (req, res) => {
                 
                 existingUser.specialization = areasOfSpecialization;
                 existingUser.research = currentAreasOfResearch;
-                
                 await existingUser.save();
-                console.log("DS");
                 return res.json({ message: 'Successful' });
         } else {
             return res.json({ message: 'Invalid User' });
