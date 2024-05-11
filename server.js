@@ -10,6 +10,7 @@ import form1Route from './routes/form1Route.js';
 import form2Route from './routes/form2Route.js';
 import form3Route from './routes/form3Route.js';
 import form4Route from './routes/form4Route.js';
+import form7Route from './routes/form7Route.js';
 import submitRoute from './routes/submitRoute.js';
 
 const app = express();
@@ -34,6 +35,7 @@ app.use('/api/form1',form1Route);
 app.use('/api/form2',form2Route);
 app.use('/api/form3',form3Route);
 app.use('/api/form4',form4Route);
+app.use('/api/form7',form7Route);
 app.use('/api/submit',submitRoute);
 
 

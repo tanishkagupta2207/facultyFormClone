@@ -2,77 +2,59 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const form6Schema = new Schema({
+const form7Schema = new Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
         required: true
     },
-    society9: {
+    nameA: {
         type: Array
     },
-    membershipStatus9: {
+    titleA: {
         type: Array
     },
-    typeOfTraining10: {
+    roleA: {
         type: Array
     },
-    organization10: {
+    statusA: {
         type: Array
     },
-    year10: {
+    sinceOrCompletedA: {
         type: Array
     },
-    duration10: {
+    nameB: {
         type: Array
     },
-    awardName11: {
+    titleB: {
         type: Array
     },
-    awardBy11: {
+    roleB: {
         type: Array
     },
-    year11: {
+    statusB: {
         type: Array
     },
-    agency12A: {
+    sinceOrCompletedB: {
         type: Array
     },
-    projectTitle12A: {
+    nameC: {
         type: Array
     },
-    amount12A: {
+    titleC: {
         type: Array
     },
-    period12A: {
+    roleC: {
         type: Array
     },
-    role12A: {
+    statusC: {
         type: Array
     },
-    status12A: {
+    sinceOrCompletedC: {
         type: Array
     },
-    organization12B: {
-        type: Array
-    },
-    projectTitle12B: {
-        type: Array
-    },
-    amount12B: {
-        type: Array
-    },
-    period12B: {
-        type: Array
-    },
-    role12B: {
-        type: Array
-    },
-    status12B: {
-        type: Array
-    }
 });
 
-const form6 = mongoose.model('form6', form6Schema);
+const form7 = mongoose.model('form7', form7Schema);
 
-export default form6;
+export default form7;
