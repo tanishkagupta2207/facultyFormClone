@@ -174,7 +174,7 @@ export const updateForm4 = async (req, res) => {
     const id = new ObjectId(userId); 
     try {
         const existingUser = await form4.findOne({userId: id});
-        console.log(existingUser);
+        // console.log(existingUser);
         if (existingUser) {
                 const {summaryOfPublication, tenBestPub, patents, book, bookChap, gschlink} = req.body;
                 console.log(summaryOfPublication);

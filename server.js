@@ -12,6 +12,7 @@ import form3Route from './routes/form3Route.js';
 import form4Route from './routes/form4Route.js';
 import form7Route from './routes/form7Route.js';
 import submitRoute from './routes/submitRoute.js';
+import printRoute from './routes/printRoute.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -37,6 +38,7 @@ app.use('/api/form3',form3Route);
 app.use('/api/form4',form4Route);
 app.use('/api/form7',form7Route);
 app.use('/api/submit',submitRoute);
+app.use('/api/print',printRoute);
 
 
 mongoose.connect(MONGODB_URI, { dbName: "facultyForm" })
