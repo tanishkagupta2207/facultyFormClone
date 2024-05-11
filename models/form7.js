@@ -3,56 +3,37 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const form7Schema = new Schema({
+    firstName: { 
+        type: String, 
+        required: true 
+    },
+    lastName: { 
+        type: String, 
+        required: true 
+    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
         required: true
     },
-    nameA: {
-        type: Array
+    significantResearchContributionFuturePlans: {
+        type: String
     },
-    titleA: {
-        type: Array
+    significantTeachingContributionFuturePlans: {
+        type: String
     },
-    roleA: {
-        type: Array
+    anyOtherRelevantInformation: {
+        type: String
     },
-    statusA: {
-        type: Array
+    professionalService: {
+        type: String
     },
-    sinceOrCompletedA: {
-        type: Array
+    listOfJournalPublications: {
+        type: String
     },
-    nameB: {
-        type: Array
-    },
-    titleB: {
-        type: Array
-    },
-    roleB: {
-        type: Array
-    },
-    statusB: {
-        type: Array
-    },
-    sinceOrCompletedB: {
-        type: Array
-    },
-    nameC: {
-        type: Array
-    },
-    titleC: {
-        type: Array
-    },
-    roleC: {
-        type: Array
-    },
-    statusC: {
-        type: Array
-    },
-    sinceOrCompletedC: {
-        type: Array
-    },
+    listOfConferencePublications: {
+        type: String
+    }
 });
 
 const form7 = mongoose.model('form7', form7Schema);

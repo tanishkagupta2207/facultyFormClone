@@ -18,7 +18,7 @@ const registerUser = async (req, res) => {
             return res.status(400).json({ message: 'User already exists with this emailId' });
         }
         
-        const newUser = new User({ firstName, lastName, emailId, password, category, status:'pending'});
+        const newUser = new User({ firstName, lastName, emailId, password, category, status:'pending', formStatus: 'Not Submitted'});
 
         await newUser.save();
 
