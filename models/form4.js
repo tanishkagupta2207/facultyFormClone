@@ -16,25 +16,25 @@ const form4Schema = new Schema({
         required: true
     },
     numberOfInternationalJournalPapers: { 
-        type: Number
+        type: String
     },
     numberOfNationalJournalPapers: { 
-        type: Number
+        type: String
     },
     numberOfInternationalConferencePapers: { 
-        type: Number
+        type: String
     },
     numberOfNationalConferencePapers: { 
-        type: Number
+        type: String
     },
     numberOfPatents: { 
-        type: Number
+        type: String
     },
     numberOfBooks: { 
-        type: Number
+        type: String
     },
     numberOfBookChapters: { 
-        type: Number
+        type: String
     },
     author: { 
         type: Array
